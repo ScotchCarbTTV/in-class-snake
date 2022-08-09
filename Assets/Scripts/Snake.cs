@@ -45,6 +45,8 @@ public class Snake : MonoBehaviour
     //prefab game object for body sections
     [SerializeField] private GameObject bodySegPrefab;
 
+    [SerializeField] private NodeManager nodeManager;
+
     private GameObject newBodySeg;
 
     private bool spawnBodySeg = false;
@@ -137,9 +139,8 @@ public class Snake : MonoBehaviour
         {
             Debug.Log("CHOMP");
             spawnBodySeg = true;
-            int appleX = UnityEngine.Random.Range(-17, 17);
-            int appleY = UnityEngine.Random.Range(-9, 9);
-            collision.transform.position = new Vector3((float)appleX, (float)appleY, 0);
+
+            collision.transform.position = nodeManager.GetRandomNodeTransform().position;
         }
         else if(collision.gameObject.tag == "WallR")
         {
@@ -159,3 +160,8 @@ public class Snake : MonoBehaviour
         }
     }
 }
+
+
+
+
+
